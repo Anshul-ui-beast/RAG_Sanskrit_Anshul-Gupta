@@ -65,28 +65,24 @@ Bash
 
 python 03_rag_app.py
 Example Interaction
-Plaintext
 
 ❓ Ask a question: Who is Shankhanada?
 🤖 Generating answer (CPU)...
 💡 Answer: Shankhanada is the servant of Govardhanadasa. In the story, he is depicted as foolish...
-📂 Project Structure
-Plaintext
 
+📂 Project Structure
 .
-├── 01_create_data.py      # Extracts raw Sanskrit text from source
-├── 02_ingest.py           # Chunking and Vector Embedding pipeline
-├── 03_rag_app.py          # RAG Inference and Chat Interface
-├── documents/             # Folder containing raw text files
+├── 01_create_data.py          # Extracts raw Sanskrit text from source
+├── 02_ingest.py               # Chunking and Vector Embedding pipeline
+├── 03_rag_app.py              # RAG Inference and Chat Interface
+├── documents/                 # Folder containing raw text files
 │   └── sanskrit_stories.txt
 ├── sanskrit_embeddings.joblib # The serialized Vector Store
-└── README.md              # Project documentation
+└── README.md                  # Project documentation
+
 🧩 Technical Details
+
 Embeddings: BAAI/bge-m3 (1024 dimensions) - chosen for superior multilingual performance.
-
 LLM: Llama-3.2-3B - chosen for low latency on CPU while maintaining reasoning capabilities.
-
 Retrieval: Cosine Similarity via Scikit-Learn.
-
-
 Data Source: Includes stories like The Foolish Servant , Clever Kalidasa , The Old Woman's Cleverness , The Devotee , and The Cold Hurts.
