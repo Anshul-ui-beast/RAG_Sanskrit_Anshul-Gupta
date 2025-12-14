@@ -43,6 +43,8 @@ Pull the models used in the pipeline:
 ollama pull bge-m3
 ollama pull llama3.2
 
+---
+
 📦 Installation
 
 Clone the repository
@@ -55,15 +57,21 @@ Install Python dependencies
 
 pip install pandas requests scikit-learn joblib numpy
 
+---
+
 🚀 Usage Guide
 
 Follow the steps in order.
+
+---
 
 Step 1: Start the Ollama Inference Server
 
 Ensure Ollama is running in the background:
 
 ollama serve
+
+---
 
 Step 2: Data Preparation
 
