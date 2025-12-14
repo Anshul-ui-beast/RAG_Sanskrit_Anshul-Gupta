@@ -42,64 +42,64 @@ Pull the models used in the pipeline:
 ```bash
 ollama pull bge-m3
 ollama pull llama3.2
+
 📦 Installation
+
 Clone the repository
 
-bash
-Copy code
 git clone <your-repo-url>
 cd <your-repo-name>
+
+
 Install Python dependencies
 
-bash
-Copy code
 pip install pandas requests scikit-learn joblib numpy
+
 🚀 Usage Guide
+
 Follow the steps in order.
 
 Step 1: Start the Ollama Inference Server
+
 Ensure Ollama is running in the background:
 
-bash
-Copy code
 ollama serve
+
 Step 2: Data Preparation
+
 Generate the raw Sanskrit text from source stories
 (e.g., Mūrkhabhṛtyasya, Chaturasya Kālidāsasya).
 
-bash
-Copy code
 python 01_create_data.py
+
+
 Output
 
-bash
-Copy code
 documents/sanskrit_stories.txt
+
 Step 3: Ingestion & Indexing
+
 Chunk the text, generate embeddings, and store the vector index.
 
-bash
-Copy code
 python 02_ingest.py
+
+
 Output
 
-Copy code
 sanskrit_embeddings.joblib
+
 Step 4: Run the Chat Application
+
 Start the RAG-based chat interface.
 
-bash
-Copy code
 python 03_rag_app.py
+
 Example Interaction
-csharp
-Copy code
 ❓ Ask a question: Who is Shankhanada?
 🤖 Generating answer (CPU)...
-💡 Answer: Shankhanada is the servant of Govardhanadasa. In the story, he is depicted as foolish...
+💡 Answer: Shankhanada is the servant of Govardhanadasa. In the story, he is depict as foolish...
+
 📂 Project Structure
-graphql
-Copy code
 .
 ├── 01_create_data.py          # Extracts raw Sanskrit text from sources
 ├── 02_ingest.py               # Chunking & vector embedding pipeline
@@ -108,7 +108,9 @@ Copy code
 │   └── sanskrit_stories.txt   # Consolidated Sanskrit corpus
 ├── sanskrit_embeddings.joblib # Serialized vector store
 └── README.md                  # Project documentation
+
 🧩 Technical Details
+
 Embeddings
 BAAI/bge-m3 (1024 dimensions) – chosen for strong multilingual and Sanskrit support.
 
@@ -132,6 +134,7 @@ The Devotee
 The Cold Hurts
 
 ✅ Highlights
+
 Fully offline & private
 
 No GPU required
