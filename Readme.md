@@ -47,26 +47,24 @@ Run the data creation script to generate the raw text file from the source stori
 
 
 ```
-
 python 01_create_data.py
-
 ```
 Output: Creates a documents/sanskrit_stories.txt file.
 
 Step 3: Ingestion & Indexing
 Run the ingestion script to read the text, chunk it, generate embeddings, and save the vector index.
 
-Bash
-
+```
 python 02_ingest.py
+```
 Output: Generates sanskrit_embeddings.joblib (The Vector Database).
 
 Step 4: Run the Chat Application
 Start the RAG interface to ask questions about the stories.
 
-Bash
-
+```
 python 03_rag_app.py
+```
 Example Interaction
 Plaintext
 
@@ -74,16 +72,17 @@ Plaintext
 🤖 Generating answer (CPU)...
 💡 Answer: Shankhanada is the servant of Govardhanadasa. In the story, he is depicted as foolish...
 📂 Project Structure
-Plaintext
 
+```
 .
-├── 01_create_data.py      # Extracts raw Sanskrit text from source
-├── 02_ingest.py           # Chunking and Vector Embedding pipeline
-├── 03_rag_app.py          # RAG Inference and Chat Interface
-├── documents/             # Folder containing raw text files
+├── 01_create_data.py          # Extracts raw Sanskrit text from source
+├── 02_ingest.py               # Chunking and Vector Embedding pipeline
+├── 03_rag_app.py              # RAG Inference and Chat Interface
+├── documents/                 # Folder containing raw text files
 │   └── sanskrit_stories.txt
 ├── sanskrit_embeddings.joblib # The serialized Vector Store
-└── README.md              # Project documentation
+└── README.md                  # Project documentation
+```
 🧩 Technical Details
 Embeddings: BAAI/bge-m3 (1024 dimensions) - chosen for superior multilingual performance.
 
