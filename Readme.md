@@ -79,6 +79,7 @@ Example Interaction
 ├── 01_create_data.py          # Extracts raw Sanskrit text from source
 ├── 02_ingest.py               # Chunking and Vector Embedding pipeline
 ├── 03_rag_app.py              # RAG Inference and Chat Interface
+├── Technical_Report.md        # Detailed report on architecture and performance
 ├── documents/                 # Folder containing raw text files
 │   └── sanskrit_stories.txt
 ├── sanskrit_embeddings.joblib # The serialized Vector Store
