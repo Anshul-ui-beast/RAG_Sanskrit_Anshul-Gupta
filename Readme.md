@@ -46,9 +46,11 @@ Step 2: Data Preparation
 Run the data creation script to generate the raw text file from the source stories (e.g., Mūrkhabhṛtyasya, Chaturasya Kālidāsasya).
 
 
-Bash
+```
 
 python 01_create_data.py
+
+```
 Output: Creates a documents/sanskrit_stories.txt file.
 
 Step 3: Ingestion & Indexing
