@@ -49,7 +49,7 @@ Run the data creation script to generate the raw text file from the source stori
 ```
 python 01_create_data.py
 ```
-Output: Creates a documents/sanskrit_stories.txt file.
+Output: Creates a `documents/sanskrit_stories.txt` file.
 
 ### Step 3: Ingestion & Indexing
 Run the ingestion script to read the text, chunk it, generate embeddings, and save the vector index.
@@ -57,7 +57,7 @@ Run the ingestion script to read the text, chunk it, generate embeddings, and sa
 ```
 python 02_ingest.py
 ```
-Output: Generates sanskrit_embeddings.joblib (The Vector Database).
+Output: Generates `sanskrit_embeddings.joblib` (The Vector Database).
 
 ### Step 4: Run the Chat Application
 Start the RAG interface to ask questions about the stories.
@@ -86,7 +86,7 @@ Example Interaction
 ```
 🧩 Technical Details
 
-* **Embeddings:** BAAI/bge-m3 (1024 dimensions) - chosen for superior multilingual performance.
-* **LLM:** Llama-3.2-3B - chosen for low latency on CPU while maintaining reasoning capabilities.
+* **Embeddings:** `BAAI/bge-m3` (1024 dimensions) - chosen for superior multilingual performance.
+* **LLM:** `Llama-3.2-3B` - chosen for low latency on CPU while maintaining reasoning capabilities.
 * **Retrieval:** Cosine Similarity via Scikit-Learn.
 * **Data Source:** Includes stories like The Foolish Servant , Clever Kalidasa , The Old Woman's Cleverness , The Devotee , and The Cold Hurts.
