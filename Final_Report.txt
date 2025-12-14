@@ -1,0 +1,63 @@
+Technical Report: Sanskrit Document RAG System
+1. System Architecture and Flow
+The system implements a standard Retrieval-Augmented Generation (RAG) pipeline optimized for CPU inference. The architecture is divided into two distinct workflows: the Ingestion Pipeline (offline) and the Inference Pipeline (online).
+1.1 Ingestion Pipeline (Offline)
+Document Loading: Raw Sanskrit text files are loaded from the source directory.
+Chunking: The text is segmented into logical units (paragraphs or stories) to ensure the retrieval model can isolate specific contexts.
+Embedding Generation: Each text chunk is passed through a dense vector embedding model (bge-m3) running locally via Ollama.
+Vector Storage: The resulting high-dimensional vectors, along with their metadata (text, source ID), are serialized into a binary format (.joblib) for efficient loading.
+1.2 Inference Pipeline (Online)
+Query Processing: The user provides a query in Sanskrit or English. This query is converted into a vector using the same embedding model used during ingestion.
+Semantic Retrieval: The system calculates the Cosine Similarity between the query vector and the stored document vectors. It retrieves the top $k$ (e.g., top 3) most relevant chunks.
+Context Construction: A prompt is dynamically assembled, combining the user's query with the retrieved Sanskrit text chunks.
+Generation: The prompt is fed into a quantized Large Language Model (llama3.2) running on the CPU. The model generates a natural language response based only on the provided context.
+
+2. Details of Sanskrit Documents Used
+The knowledge base consists of five distinct Sanskrit narratives sourced from the provided dataset. These documents cover moral stories and historical anecdotes suitable for testing retrieval accuracy across different contexts.
+The Foolish Servant (Mūrkhabhṛtyasya): A story about a servant named Shankhanada who follows orders literally, leading to disasters like spilling sugar and killing a puppy. It concludes with a moral about the dangers of a foolish servant.
+Clever Kalidasa (Chaturasya Kālidāsasya): An anecdote where King Bhoj offers a reward for a new poem, but scholars memorize and claim every new poem is old. Kalidasa outwits them with a poem stating the King owes him 99 crore gems, forcing the scholars to deny knowledge of it to avoid validating the debt.
+The Old Woman's Cleverness (Vṛddhāyāḥ Cāturyam): A tale of a town fearing a demon named Ghantakarna. An old woman discovers it is merely monkeys ringing a stolen bell and solves the problem by offering them fruits.
+The Devotee (Devabhakta): A story of a lazy devotee who refuses human help when his cart gets stuck, believing God will intervene directly. After drowning, God explains that He sent help through the humans the devotee rejected.
+The Cold Hurts (Śītaṃ Bahu Bā dhati): A humorous encounter where a foreign scholar claims "the cold hurts" (badhati). Kalidasa, disguised as a porter, corrects his grammar, noting that the correct verb form is badhate (Atmanepada), shaming the scholar into leaving.
+
+3. Preprocessing Pipeline for Sanskrit Documents
+To prepare the raw Sanskrit text for machine understanding, the following preprocessing steps were implemented:
+Text Extraction: The source content was aggregated from multiple disjointed segments (e.g., ``) into coherent narrative blocks. Metadata tags and source identifiers were stripped to create clean, readable prose .
+Chunking Strategy:
+Method: Paragraph-based separation (\n\n).
+Rationale: Sanskrit narratives often contain distinct episodes or moral verses (Subhashitas) that function as self-contained units. Retaining paragraph integrity ensures that the retrieved context contains complete thoughts rather than fragmented sentences.
+Vectorization:
+Model: BAAI/bge-m3 (via Ollama).
+Dimension: 1024-dimensional dense vectors.
+Reasoning: The M3 model (Multi-Linguality, Multi-Functionality, Multi-Granularity) is specifically chosen for its superior performance on non-English languages compared to standard models like BERT or earlier OpenAI embeddings.
+
+4. Retrieval and Generation Mechanisms
+4.1 Retrieval Mechanism
+Algorithm: Cosine Similarity ($\text{similarity} = \frac{A \cdot B}{||A|| ||B||}$).
+Implementation: sklearn.metrics.pairwise.cosine_similarity.
+Process: The system computes the angle between the query vector and every document vector in the knowledge base. A smaller angle (higher cosine score) indicates higher semantic similarity.
+Filtering: The system retrieves the top 3 chunks to provide sufficient context without exceeding the LLM's context window.
+4.2 Generation Mechanism
+Model: Llama-3.2-3B.
+Quantization: The model is likely 4-bit quantized (default in Ollama) to fit within standard system RAM (approx. 2-3 GB VRAM equivalent).
+Prompt Engineering: A "Context-Restricted" system prompt is used:
+"Answer clearly based ONLY on the context provided. If the answer is not in the context, say so."
+This reduces hallucinations, forcing the model to rely on the retrieved Sanskrit text rather than its pre-trained knowledge.
+
+5. Performance Observations
+Note: These observations are based on the architecture constraints (CPU-only) and model specifications.
+5.1 Latency
+Embedding Generation: Fast (~100-300ms per query on modern CPUs). The bge-m3 model is relatively lightweight compared to generative models.
+LLM Inference: Moderate to Slow.
+On a standard CPU (e.g., Intel i5/i7 or Apple Silicon), llama3.2-3B generates tokens at approximately 10-20 tokens/second.
+This is significantly slower than GPU inference but acceptable for a "chat" style interaction where real-time latency is not critical.
+5.2 Resource Usage
+Memory (RAM):
+Model Load: ~2.0 GB for Llama 3.2 (3B parameters @ 4-bit).
+Vector Index: Negligible (< 10 MB) for the small dataset of 5 stories.
+Total Footprint: The system runs comfortably on machines with 8GB RAM, leaving ample room for the OS.
+Compute: CPU utilization will spike to 100% during the generation phase (Step 4 of Inference).
+5.3 Accuracy
+Retrieval: High. The bge-m3 model is robust for cross-lingual tasks. If a user asks "Who is the foolish servant?" in English, the vector space correctly aligns it with the Sanskrit "Mūrkhabhṛtyasya" content.
+Generation: Good. Llama 3.2 is capable of synthesizing information from the context. However, care must be taken with complex Sanskrit grammar explanations (like the Atmanepada distinction in Story 5 ), where smaller models might sometimes oversimplify the linguistic nuance.
+
