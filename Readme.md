@@ -20,7 +20,7 @@ Before running the project, ensure you have the following installed:
 1.  **Python 3.8+**
 2.  **Ollama**: [Download here](https://ollama.com/)
 3.  **AI Models**: You need to pull the specific models used in the pipeline. Open your terminal and run:
-    ```bash
+    ```
     ollama pull bge-m3
     ollama pull llama3.2
     ```
@@ -29,7 +29,7 @@ Before running the project, ensure you have the following installed:
 
 1.  **Clone the repository** (or create a folder for your project).
 2.  **Install Python dependencies**:
-    ```bash
+    ```
     pip install pandas requests scikit-learn joblib numpy
     ```
 
@@ -41,6 +41,7 @@ Follow these steps strictly in order to set up and run the system.
 Ensure Ollama is running in the background to handle API requests.
 ```bash
 ollama serve
+```
 Step 2: Data Preparation
 Run the data creation script to generate the raw text file from the source stories (e.g., Mūrkhabhṛtyasya, Chaturasya Kālidāsasya).
 
