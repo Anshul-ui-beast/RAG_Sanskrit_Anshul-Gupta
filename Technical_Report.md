@@ -20,13 +20,13 @@ The system implements a Retrieval-Augmented Generation (RAG) pipeline optimized 
 
 ## 2. Details of Sanskrit Documents Used
 
-[cite_start]The knowledge base consists of five distinct Sanskrit narratives sourced from the provided dataset [cite: 1-72]:
+The knowledge base consists of five distinct Sanskrit narratives sourced from the provided dataset [cite: 1-72]:
 
-1.  [cite_start]**The Foolish Servant (Mūrkhabhṛtyasya):** A warning against hiring foolish staff, illustrated by a servant named Shankhanada who causes various disasters [cite: 1-12].
-2.  [cite_start]**Clever Kalidasa (Chaturasya Kālidāsasya):** An anecdote where the poet Kalidasa outwits scholars who falsely claim to memorize every new poem to prevent others from winning a reward [cite: 13-25].
-3.  [cite_start]**The Old Woman's Cleverness (Vṛddhāyāḥ Cāturyam):** A story about an old woman who discovers that a feared "demon" is actually monkeys ringing a bell and solves the issue using fruits [cite: 26-37].
-4.  [cite_start]**The Devotee (Devabhakta):** A moral story about a lazy devotee who refuses human help while expecting God to intervene, only to realize later that God sent the humans to help him [cite: 38-56].
-5.  [cite_start]**The Cold Hurts (Śītaṃ Bahu Bādhati):** A linguistic anecdote where Kalidasa corrects a scholar's incorrect Sanskrit grammar (`badhati` vs `badhate`), shaming him into leaving [cite: 57-72].
+1. **The Foolish Servant (Mūrkhabhṛtyasya):** A warning against hiring foolish staff, illustrated by a servant named Shankhanada who causes various disasters [cite: 1-12].
+2. **Clever Kalidasa (Chaturasya Kālidāsasya):** An anecdote where the poet Kalidasa outwits scholars who falsely claim to memorize every new poem to prevent others from winning a reward [cite: 13-25].
+3. **The Old Woman's Cleverness (Vṛddhāyāḥ Cāturyam):** A story about an old woman who discovers that a feared "demon" is actually monkeys ringing a bell and solves the issue using fruits [cite: 26-37].
+4. **The Devotee (Devabhakta):** A moral story about a lazy devotee who refuses human help while expecting God to intervene, only to realize later that God sent the humans to help him [cite: 38-56].
+5. **The Cold Hurts (Śītaṃ Bahu Bādhati):** A linguistic anecdote where Kalidasa corrects a scholar's incorrect Sanskrit grammar (`badhati` vs `badhate`), shaming him into leaving [cite: 57-72].
 
 ---
 
