@@ -85,8 +85,9 @@ Example Interaction
 └── README.md                  # Project documentation
 ```
 🧩 Technical Details
-
+```
 ● Embeddings: BAAI/bge-m3 (1024 dimensions) - chosen for superior multilingual performance.
 ● LLM: Llama-3.2-3B - chosen for low latency on CPU while maintaining reasoning capabilities.
 ● Retrieval: Cosine Similarity via Scikit-Learn.
 ● Data Source: Includes stories like The Foolish Servant , Clever Kalidasa , The Old Woman's Cleverness , The Devotee , and The Cold Hurts.
+```
