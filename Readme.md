@@ -42,7 +42,7 @@ Ensure Ollama is running in the background to handle API requests.
 ```bash
 ollama serve
 ```
-Step 2: Data Preparation
+### Step 2: Data Preparation
 Run the data creation script to generate the raw text file from the source stories (e.g., Mūrkhabhṛtyasya, Chaturasya Kālidāsasya).
 
 
@@ -51,7 +51,7 @@ python 01_create_data.py
 ```
 Output: Creates a documents/sanskrit_stories.txt file.
 
-Step 3: Ingestion & Indexing
+### Step 3: Ingestion & Indexing
 Run the ingestion script to read the text, chunk it, generate embeddings, and save the vector index.
 
 ```
@@ -59,7 +59,7 @@ python 02_ingest.py
 ```
 Output: Generates sanskrit_embeddings.joblib (The Vector Database).
 
-Step 4: Run the Chat Application
+### Step 4: Run the Chat Application
 Start the RAG interface to ask questions about the stories.
 
 ```
